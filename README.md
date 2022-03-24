@@ -1,2 +1,3 @@
 # adriaclim-indicators
-Repository hosting public codes for computinf climate indicators in Adriaclim project
+
+This repository will host public codes for computing climate change indicators in the framework of the Adriaclim project.

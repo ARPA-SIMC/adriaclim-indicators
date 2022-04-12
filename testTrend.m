@@ -1,25 +1,22 @@
 function [pValue,trend,T]=testTrend(data,varargin)
 % [pValue,trend]=testTrend(data,varargin);
 % 
-% Funcion que calcula el p-valor y la tendencia de los datos.
+% The function computes the pvalue for the data trend
 % 
-% En la entrada : 
-% 	data        : son las series de datos de las cuales queremos estudiar la
-%                 tendencia.
-% 	varargin	: paramétros opcionales
-% 		'test'	-	toma los valores 'Spearman' o 'MannKendall' (MannKendall por defecto)
-% 		'period'-	toma los valores 'day','month' y 'year'. Indica
-% 		            como agrupamos los datos para la aplicacion de los tests. Por
-%            		defecto se le asigna 'day'.
-%       'missing' - parametro de missing data para la funcion 'movingAverage'
+% Input data:
+% 	data        : data to be used to compute the trend
+% 	varargin	: poptional parameters
+% 		'test'	- 'Spearman' or 'MannKendall' (MannKendall as default)
+% 		'period'-'day','month' y 'year'. How to group the data to compute the trend. With default id uses 'day'.
+%       'missing' - missing data parameter for the 'movingAverage' function
 % 	
-% En la salida :
-% 	pValue : vector de longitud Nest (numero de estaciones) con los
-%            p-valores del test en cada una de las estaciones.
-% 	trend  : vector de longitud Nest que contiene la tendencia de la serie
-% 	T        : vector de longitud Nest que contiene el valor del estadistico
+% Output data :
+% 	pValue : p values
+%            
+% 	trend  : trend values
+% 	T        : vector containing the value of the statistics
 % 
-% Ejemplo de llamada:
+% Example:
 % 
 % 		[pValue,trend]=testTrend(data,'test','Spearman','period','year','missing',0.1);
 
@@ -35,17 +32,6 @@ for i=1:2:length(varargin)
         case 'autocorrelation', autocorrelation=varargin{i+1};
     end
 end
-% Nest=size(data,2);
-% trend=zeros(Nest,1)+NaN;
-% pValue=zeros(Nest,1)+NaN;
-% for k=1:Nest
-    % switch lower(test) 
-        % case('spearman')
-            % [pValue(k),trend(k)]=SP(data(:,k),'period',period,'missing',missing);
-        % case('mannkendall')
-            % [pValue(k),trend(k)]=MK(data(:,k),'period',period,'missing',missing);
-    % end
-% end
 
 Nest=size(data,2);
 trend=zeros(Nest,1)+NaN;

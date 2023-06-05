@@ -1,0 +1,78 @@
+AdriaCLIM Climate Indicators
+
+Computation of Water Resources (RD) related Climate Indicators based on
+- European Flood Awareness System (EFAS) for 1991-2020, and
+- AdriaCLIM Climate Downscale Simulations using WRF for 1991-2020 and 2021-2050,
+foreseen in the AdriaCLIM project:
+[ RD-1 ] River Discharge
+[ RD-2 ] Mean River Flow
+[ RD-3 ] Minimum River Flow
+[ RD-4 ] Maximum River Discharge
+[ RD-5 ] Standardized Flow Index (SFI)
+
+and computation of Meteo-Hydrological (MH) related Climate Indicators based on
+- the fifth generation ECMWF reanalysis for the global climate and weather (ERA5) for 1991-2020, and
+- AdriaCLIM Climate Downscale Simulations using WRF-Hydro for 1991-2020 and 2021-2050,
+foreseen in the AdriaCLIM project:
+[MH-1] Standardized Precipitation Index (SPI)
+[MH-2] Standardized Precipitation and Evapotranspiration Index (SPEI)
+[MH-3] Number of Consecutive Days without Precipitation
+
+NEEDS:
+> 6-Hourly EFAS data in NetCDF placed in "EFAS" directory (one file by month);
+> Hourly WRFHydro data placed in "WRFHydro" directory (single file in csv);
+> Hourly ERA5 data in NetCDF placed at "ERA5" directory (one file by month)
+  containing Total precipitation (tp) and Temperature at 2m (t2m);
+> 6-Hourly WRF data in NetCDF placed in "WRF" directory (one file by month)
+  containing Total precipitation (precip_tot) and Temperature at 2m (T_2m);
+
+All these modelling data needed to compute the Climate Indicators RD and MH are available on CMCC ERDDAP Platform dedicated to AdriaCLIM project:
+http://erddap-adriaclim.cmcc-opa.eu/erddap/info/
+
+
+The codes are in Wolfram's Mathematica computational language.
+To run them using a free license, a free account login is needed.
+Please, follow these simple 3 steps to prepare your environment:
+
+1) Install the WolframScript library as https://reference.wolfram.com/language/workflow/InstallWolframScript.html
+
+2) Sign in at https://account.wolfram.com/login/create
+
+3) From a terminal, provide your credentials using
+$ wolframscript -username example-user@wolfram.com -password XXXXXX
+This step must be done only the first time or if you change the computer.
+
+
+With the code file and the input file folders in the same directory, call the following command from a terminal to compute the AdriaCLIM Climate Indicators:
+
+a) For [RD] Water Resources Climate Indicators
+   using AdriaCLIM WRFHydro data (1991-2050)
+$  wolframscript -file AdriaCLIM_CI-RD_WRFHydro.wls
+
+
+b) For [RD] Water Resources Climate Indicators
+   using the reference dataset EFAS (1991-2020)
+$  wolframscript -file AdriaCLIM_CI-RD_EFAS.wls
+
+
+c) For [MH] Hydro-Meteorological Climate Indicators
+   using AdriaCLIM WRF data (1991-2050)
+$  wolframscript -file AdriaCLIM_CI-MH_WRF.wls
+
+
+d) For [MH] Hydro-Meteorological Climate Indicators
+   using the reference dataset EFAS (1991-2020)
+$  wolframscript -file AdriaCLIM_CI-MH_ERA5.wls
+
+
+For a specific time interval running, add the initial and final year as arguments at the command line:
+Ex.
+$  wolframscript -file AdriaCLIM_CI-RD_EFAS.wls 1992 2011
+Remember, the analysis periods foreseen in AdriaCLIM are 1991-2020 (historical) and 2021-2050 (projection). Thus, only time intervals within the same analysis period are allowed.
+
+
+
+By Leonardo Aragão (leonardo.aragao@unibo.it)
+University of Bologna
+Inter-Departmental Research Centre for Environmental Science (CIRSA)
+Via Sant'Alberto 163, 48123 - Ravenna (RA), Italy. 
